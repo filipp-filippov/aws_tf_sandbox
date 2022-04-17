@@ -1,7 +1,7 @@
 locals {
   account_name = {
-    development = "bpc-development"
-    production  = "bpc-production"
+    development = "tft-development"
+    production  = "tft-production"
   }
 
   # Use existing emails, in case of the account recovery. You will have to use different email addresses. Some email
@@ -12,7 +12,7 @@ locals {
   }
 
   terraform_state_bucket_name = {
-    development = "bpc-development-tfstate"
-    production  = "bpc-production-tfstate"
+    development = "tft-development-tfstate"
+    production  = "tft-production-tfstate"
   }
 }
