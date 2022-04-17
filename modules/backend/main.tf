@@ -1,6 +1,10 @@
 resource "aws_s3_bucket" "tfstate" {
   bucket = var.bucket_name
-  acl = "private"
+}
+
+resource "aws_s3_bucket_acl" "tfstate_bucket_acl" {
+  bucket = aws_s3_bucket.tfstate.id
+  acl    = "private"
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example" {
