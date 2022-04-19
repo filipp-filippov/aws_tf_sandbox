@@ -1,7 +1,7 @@
 locals {
   account_name = {
     development = "tft-development"
-    production  = "tft-production"
+/*    production  = "tft-production"*/
   }
 
   # Use existing emails, in case of the account recovery. You will have to use different email addresses. Some email
@@ -12,8 +12,8 @@ locals {
   }*/
 
   terraform_state_bucket_name = {
-    development = "tft-development-tfstate"
-    production  = "tft-production-tfstate"
+    management = "tft-development-tfstate"
+/*    production  = "tft-production-tfstate"*/
   }
 
   aws_organization_id = {
