@@ -46,14 +46,14 @@ resource "aws_organizations_organizational_unit" "this_ou" {
 }
 
 resource "aws_organizations_account" "development" {
-  parent_id = aws_organizations_organizational_unit.this_ou.id
+  parent_id = aws_organizations_organizational_unit.this_ou[0].id
   name      = local.account_name["development"]
   email     = local.account_owner_email["development"]
   role_name = "Admin"
 }
 
 resource "aws_organizations_account" "production" {
-  parent_id = aws_organizations_organizational_unit.this_ou.id
+  parent_id = aws_organizations_organizational_unit.this_ou[1].id
   name      = local.account_name["production"]
   email     = local.account_owner_email["production"]
   role_name = "Admin"
