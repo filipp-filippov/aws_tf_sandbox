@@ -39,12 +39,12 @@ resource "aws_organizations_organization" "tft-test" {
 }
 
 resource "aws_organizations_organizational_unit" "dev_ou" {
-  name      = dev_ou
+  name      = "dev_ou"
   parent_id = aws_organizations_organization.tft-test.roots[0].id
 }
 
 resource "aws_organizations_organizational_unit" "prod_ou" {
-  name      = prod_ou
+  name      = "prod_ou"
   parent_id = aws_organizations_organization.tft-test.roots[0].id
 }
 
