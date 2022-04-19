@@ -1,20 +1,17 @@
-resource "aws_s3_bucket" "tfstate" {
+resource "aws_s3_bucket" "this" {
   bucket = var.bucket_name
-}
-
-resource "aws_s3_bucket_acl" "tfstate_bucket_acl" {
-  bucket = aws_s3_bucket.tfstate.id
   acl    = "private"
-}
 
-resource "aws_s3_bucket_versioning" "versioning_example" {
-  bucket = aws_s3_bucket.tfstate.id
-  versioning_configuration {
-    status = "Enabled"
+  versioning {
+    enabled = true
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
-resource "aws_dynamodb_table" "tfstate" {
+resource "aws_dynamodb_table" "this" {
   name         = var.table_name
   hash_key     = "LockID"
   billing_mode = "PAY_PER_REQUEST"
