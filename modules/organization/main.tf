@@ -1,3 +1,26 @@
+
+provider "aws" {
+  assume_role {
+    role_arn = "arn:aws:iam::${aws_organizations_account.development.id}:role/Admin"
+  }
+
+  alias  = "development"
+  region = "eu-central-1"
+  profile = "default"
+}
+
+provider "aws" {
+  assume_role {
+    role_arn = "arn:aws:iam::${aws_organizations_account.production.id}:role/Admin"
+  }
+
+  alias  = "production"
+  region = "eu-central-1"
+  profile = "default"
+}
+
+
+
 resource "aws_organizations_organization" "tft-test" {
 }
 
