@@ -1,6 +1,6 @@
 locals {
   account_name = {
-    development = "tft-development"
+    management = "tft-management"
 /*    production  = "tft-production"*/
   }
 
