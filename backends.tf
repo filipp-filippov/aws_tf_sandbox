@@ -3,7 +3,7 @@ module "backend_management" {
   bucket_name = local.terraform_state_bucket_name.management
 
   providers = {
-    aws = aws.development
+    aws = aws.management
   }
 }
 
