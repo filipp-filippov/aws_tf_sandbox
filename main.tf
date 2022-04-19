@@ -38,8 +38,8 @@ provider "aws" {
 
 
 resource "aws_organizations_organization" "tft-test" {
-  id                    = local.aws_organization_id["test_org"]
-  master_account_id     = local.aws_organization_master_account_id["org_master_id"]
+  id                    = local.aws_organization_id.test_org
+  master_account_id     = local.aws_organization_master_account_id.org_master_id
   enabled_policy_types  = ["SERVICE_CONTROL_POLICY"]
 }
 
