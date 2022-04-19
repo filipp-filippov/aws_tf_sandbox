@@ -1,4 +1,3 @@
-
 provider "aws" {
   assume_role {
     role_arn = "arn:aws:iam::${aws_organizations_account.development.id}:role/Admin"
