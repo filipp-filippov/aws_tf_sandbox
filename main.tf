@@ -35,8 +35,8 @@ provider "aws" {
 }
 
 
-resource "aws_organizations_organization" "tft-test" {
-}
+/*resource "aws_organizations_organization" "tft-test" {
+}*/
 
 resource "aws_organizations_organizational_unit" "dev_ou" {
   name      = "dev_ou"
