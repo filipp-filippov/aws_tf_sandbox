@@ -38,21 +38,25 @@ provider "aws" {
 resource "aws_organizations_organization" "tft-test" {
 }
 
-resource "aws_organizations_organizational_unit" "this_ou" {
-  for_each  = toset(var.OUs)
-  name      = each.key
+resource "aws_organizations_organizational_unit" "dev_ou" {
+  name      = dev_ou
+  parent_id = aws_organizations_organization.tft-test.roots[0].id
+}
+
+resource "aws_organizations_organizational_unit" "prod_ou" {
+  name      = prod_ou
   parent_id = aws_organizations_organization.tft-test.roots[0].id
 }
 
 resource "aws_organizations_account" "development" {
-  parent_id = aws_organizations_organizational_unit.dev-ou.id
+  parent_id = aws_organizations_organizational_unit.dev_ou.id
   name      = local.account_name["development"]
   email     = local.account_owner_email["development"]
   role_name = "Admin"
 }
 
 resource "aws_organizations_account" "production" {
-  parent_id = aws_organizations_organizational_unit.prod-ou.id
+  parent_id = aws_organizations_organizational_unit.prod_ou.id
   name      = local.account_name["production"]
   email     = local.account_owner_email["production"]
   role_name = "Admin"
