@@ -19,7 +19,7 @@ provider "aws" {
     role_arn = local.aws_organization_master_account_id.role_arn
   }
 
-  alias  = "development"
+  alias  = "management"
   region = "eu-central-1"
   profile = "default"
 }
@@ -53,7 +53,8 @@ resource "aws_organizations_organizational_unit" "prod_ou" {
   parent_id = aws_organizations_organization.tft-test.roots[0].id
 }
 
-/*resource "aws_organizations_account" "development" {
+/*
+resource "aws_organizations_account" "development" {
   parent_id = aws_organizations_organizational_unit.dev_ou.id
   name      = local.account_name["development"]
   email     = local.account_owner_email["development"]
@@ -64,5 +65,5 @@ resource "aws_organizations_account" "production" {
   parent_id = aws_organizations_organizational_unit.prod_ou.id
   name      = local.account_name["production"]
   email     = local.account_owner_email["production"]
-  role_name = "Admin"*/
-}
+  role_name = "Admin"
+}*/
