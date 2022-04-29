@@ -28,6 +28,8 @@ provider "aws" {
 module "mgmt-backend" {
   source  = "./modules/mgmt/backend"
   bucket_name = "tfstate"
+  aws_root_org_ou_id = ""
+  aws_ou = ""
   table_name = "mgmt-lock"
   providers = {
     aws = aws
