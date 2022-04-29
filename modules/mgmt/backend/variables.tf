@@ -8,10 +8,8 @@ variable "table_name" {
 
 variable "aws_root_org_ou_id" {
   type    = string
-  default = var.aws_root_org_ou_id
 }
 
 variable "aws_ou" {
   type    = string
-  default = var.aws_ou
 }
