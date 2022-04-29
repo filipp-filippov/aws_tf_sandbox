@@ -26,7 +26,7 @@ provider "aws" {
 }
 
 module "mgmt-backend" {
-  source  = "modules/mgmt/backend"
+  source  = "./modules/mgmt/backend"
   bucket_name = "tfstate"
   table_name = "mgmt-lock"
   providers = {
