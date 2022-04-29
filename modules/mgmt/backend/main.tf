@@ -5,7 +5,6 @@ resource "aws_organizations_organizational_unit" "mgmt" {
 
 resource "aws_s3_bucket" "mgmt" {
   region  = "eu-central-1"
-  key     = "backend"
   bucket_prefix = var.aws_ou
 }
 
