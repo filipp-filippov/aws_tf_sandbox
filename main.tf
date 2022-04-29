@@ -15,14 +15,26 @@ provider "aws" {
 
 
 provider "aws" {
+
   assume_role {
     role_arn = local.aws_organization_master_account_id.role_arn
   }
 
-  alias  = "management"
+  alias  = "mgmt"
   region = "eu-central-1"
   profile = "default"
 }
+
+module "mgmt-backend" {
+  source  = "modules/mgmt/backend"
+  bucket_name = "tfstate"
+  table_name = "mgmt-lock"
+  providers = {
+    aws = aws
+  }
+}
+
+
 
 /*
 provider "aws" {
@@ -35,6 +47,7 @@ provider "aws" {
   profile = "default"
 }
 */
+/*
 
 
 resource "aws_organizations_organization" "tft-test" {
@@ -42,23 +55,12 @@ resource "aws_organizations_organization" "tft-test" {
   master_account_id     = local.aws_organization_master_account_id.org_master_id
   enabled_policy_types  = ["SERVICE_CONTROL_POLICY"]
 }
+*/
 
-resource "aws_organizations_organizational_unit" "dev_ou" {
-  name      = "dev_ou"
-  parent_id = aws_organizations_organization.tft-test.roots[0].id
-}
 
-resource "aws_organizations_organizational_unit" "prod_ou" {
+/*resource "aws_organizations_organizational_unit" "prod_ou" {
   name      = "prod_ou"
   parent_id = aws_organizations_organization.tft-test.roots[0].id
-}
-
-/*
-resource "aws_organizations_account" "development" {
-  parent_id = aws_organizations_organizational_unit.dev_ou.id
-  name      = local.account_name["development"]
-  email     = local.account_owner_email["development"]
-  role_name = "Admin"
 }
 
 resource "aws_organizations_account" "production" {

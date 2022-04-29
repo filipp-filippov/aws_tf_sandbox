@@ -1,8 +1,10 @@
 locals {
   account_name = {
-    management = "tft-management"
+    mgmt = "tft-management"
 /*    production  = "tft-production"*/
   }
+
+  aws_root_org_ou_id  = "r-i4m8"
 
   # Use existing emails, in case of the account recovery. You will have to use different email addresses. Some email
   # providers offer sub-addressing, with a tag after the + (plus) sign, so you can have infinite amount of addresses.
