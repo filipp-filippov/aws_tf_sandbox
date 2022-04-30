@@ -28,9 +28,8 @@ provider "aws" {
 module "mgmt-backend" {
   source  = "./modules/mgmt/backend"
   bucket_name = "tfstate"
-  aws_root_org_ou_id = "r-i4m8"
   aws_ou = "mgmt"
-  table_name = "mgmt-terraform-lock-fromtfvars"
+  table_name = "mgmt-terraform-lock"
   providers = {
     aws = aws
   }

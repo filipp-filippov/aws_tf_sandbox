@@ -1,6 +1,8 @@
+data "aws_organizations_organization" "current" {}
+
 resource "aws_organizations_organizational_unit" "mgmt" {
   name      = "mgmt_ou"
-  parent_id = var.aws_root_org_ou_id
+  parent_id = data.aws_organizations_organization.current.master_account_id
 }
 
 resource "aws_s3_bucket" "mgmt" {

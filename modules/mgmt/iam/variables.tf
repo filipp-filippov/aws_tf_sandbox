@@ -6,8 +6,3 @@ variable "tf_policy_name" {
 variable "iam_role_env" {
   type    = string
 }
-
-variable "assume_role_acct_id" {
-  type    = string
-  default = data.aws_caller_identity.current.account_id
-}
