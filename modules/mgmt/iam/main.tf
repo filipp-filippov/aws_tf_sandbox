@@ -16,7 +16,6 @@ data "template_file" "tf_assume_role" {
 resource "aws_organizations_organizational_unit" "mgmt" {
   name      = "mgmt_ou"
   parent_id = data.aws_organizations_organization.current.roots[0].id
-  accounts  = data.aws_caller_identity.current.account_id
 }
 
 resource "aws_iam_policy" "mgmt-tf" {
