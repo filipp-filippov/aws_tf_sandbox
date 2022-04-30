@@ -35,3 +35,8 @@ resource "aws_iam_role_policy_attachment" "attach-tf-policy" {
   role       = aws_iam_role.mgmt-tf-role.name
   policy_arn = aws_iam_policy.mgmt-tf.arn
 }
+
+
+output "account_ids" {
+  value = data.aws_organizations_organization.current.accounts[*].id
+}
