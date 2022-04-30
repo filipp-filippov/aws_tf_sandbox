@@ -30,13 +30,16 @@ module "mgmt-backend" {
   bucket_name = "tfstate"
   aws_root_org_ou_id = "r-i4m8"
   aws_ou = "mgmt"
-  table_name = "mgmt-lock"
+  table_name = "mgmt-terraform-lock-fromtfvars"
   providers = {
     aws = aws
   }
 }
 
-
+module "mgmt-tf-role" {
+  source = "./modules/mgmt/iam"
+  iam_role_env = "mgmt"
+}
 
 /*
 provider "aws" {
