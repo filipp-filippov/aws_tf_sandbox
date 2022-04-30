@@ -16,6 +16,7 @@ resource "aws_s3_bucket_acl" "mgmt_bucket_acl" {
 
 resource "aws_s3_bucket_versioning" "mgmt_bucket_versioning" {
   bucket = aws_s3_bucket.mgmt.id
+  //noinspection HCLUnknownBlockType
   versioning_configuration {
     status = "Enabled"
   }
