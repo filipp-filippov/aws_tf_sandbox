@@ -5,6 +5,7 @@
             "Effect": "Allow",
             "Principal": {
                 "AWS": "arn:aws:iam::${account_id}:root"
+                "Service": "eks.amazonaws.com"
             },
             "Action": "sts:AssumeRole",
             "Condition": {}
