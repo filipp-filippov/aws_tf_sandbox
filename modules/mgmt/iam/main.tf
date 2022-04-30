@@ -22,3 +22,8 @@ resource "aws_iam_role" "mgmt-tf-role" {
     env = var.iam_role_env
   }
 }
+
+resource "aws_iam_role_policy_attachment" "test-attach" {
+  role       = aws_iam_role.mgmt-tf-role.name
+  policy_arn = aws_iam_policy.mgmt-tf.arn
+}
