@@ -1,14 +1,22 @@
+data "aws_organizations_organization" "current" {}
+
+data "aws_caller_identity" "current" {}
+
 data "template_file" "tf_permissions" {
   template = file("${path.module}/terraform_role.json")
 }
-
-data "aws_caller_identity" "current" {}
 
 data "template_file" "tf_assume_role" {
   template = file("${path.module}/assume_role.tpl")
   vars  = {
     account_id  = data.aws_caller_identity.current.account_id
   }
+}
+
+resource "aws_organizations_organizational_unit" "mgmt" {
+  name      = "mgmt_ou"
+  parent_id = data.aws_organizations_organization.current.roots[0].id
+  accounts  = data.aws_caller_identity.current.account_id
 }
 
 resource "aws_iam_policy" "mgmt-tf" {

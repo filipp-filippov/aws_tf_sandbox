@@ -1,10 +1,3 @@
-data "aws_organizations_organization" "current" {}
-
-resource "aws_organizations_organizational_unit" "mgmt" {
-  name      = "mgmt_ou"
-  parent_id = data.aws_organizations_organization.current.roots[0].id
-}
-
 resource "aws_s3_bucket" "mgmt" {
   bucket_prefix = var.aws_ou
 }
