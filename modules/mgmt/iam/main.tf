@@ -7,7 +7,7 @@ data "aws_caller_identity" "current" {}
 data "template_file" "tf_assume_role" {
   template = file("${path.module}/assume_role.tpl")
   vars  = {
-    account_id  = data.aws_caller_identity.current.account_id
+    account_id  = var.assume_role_acct_id
   }
 }
 
