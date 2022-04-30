@@ -1,5 +1,5 @@
 data "template_file" "tf_permissions" {
-  template = file("./terraform_role.json")
+  template = file("./modules/mgmt/iam/terraform_role.json")
 }
 
 resource "aws_iam_policy" "mgmt-tf" {
