@@ -17,13 +17,14 @@ resource "aws_iam_policy" "mgmt-tf" {
 }
 
 resource "aws_iam_role" "mgmt-tf-role" {
+  name = "TerraformMGMTRole"
   assume_role_policy = data.template_file.tf_assume_role.rendered
   tags = {
     env = var.iam_role_env
   }
 }
 
-resource "aws_iam_role_policy_attachment" "test-attach" {
+resource "aws_iam_role_policy_attachment" "attach-tf-policy" {
   role       = aws_iam_role.mgmt-tf-role.name
   policy_arn = aws_iam_policy.mgmt-tf.arn
 }
