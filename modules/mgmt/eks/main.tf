@@ -1,10 +1,10 @@
 data "terraform_remote_state" "vpc"{
   backend = "s3"
-    config  = {
-      bucket = "mgmt-tfstate"
-      key = "ou/mgmt"
-      region = "eu-central-1"
-    }
+  config  = {
+    bucket = "mgmt-tfstate"
+    key = "ou/mgmt"
+    region = "eu-central-1"
+  }
 }
 
 resource "aws_eks_cluster" "dev-eks" {
