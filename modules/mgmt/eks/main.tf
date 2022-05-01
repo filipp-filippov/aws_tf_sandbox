@@ -1,7 +1,5 @@
 data "terraform_remote_state" "remote" {
-  backend = "s3"
-
-  config  = {
+  backend "s3" {
     bucket  = "mgmt-tfstate"
     key = "ou/mgmt"
     region  = "eu-central-1"
