@@ -26,6 +26,13 @@ output "session_arn" {
   value = data.aws_iam_session_context.current.arn
 }
 
+output "vpc_compute_network_cidr" {
+  value = module.vpc.db_compute_network_cidr
+}
+
+output "vpc_session_arn" {
+  value = ""
+}
 
 /*output "links" {
   value = {
