@@ -11,3 +11,7 @@
     switch_role_production = "https://signin.aws.amazon.com/switchrole?account=${aws_organizations_account.production.id}&roleName=${urlencode(module.developer_role_staging.role_name)}&displayName=${urlencode("Developer@production")}"
   }
 }*/
+
+output "terraform_role_arn" {
+  value = module.mgmt-tf-role.terraform_role_arn
+}

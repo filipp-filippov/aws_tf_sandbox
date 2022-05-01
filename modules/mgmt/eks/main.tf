@@ -1,4 +1,4 @@
-data "terraform_remote_state" "remote" {
+data "terraform_remote_state" "remote-mgmt" {
   backend = "s3"
   config  = {
     bucket  = "mgmt-tfstate"
@@ -18,10 +18,10 @@ data "terraform_remote_state" "remote-root" {
 
 resource "aws_eks_cluster" "dev-eks" {
   name     = "dev-eks"
-  role_arn = data.terraform_remote_state.remote-root.aws_iam_role.mgmt-tf-role.arn
+  role_arn = data.terraform_remote_state.remote-root.terraform_role_arn
 
   vpc_config {
-    subnet_ids = [data.terraform_remote_state.remote.vpc.aws_subnet.mgmt-compute.id]
+    subnet_ids = [data.terraform_remote_state.remote-mgmt.vpc_compute_network_cidr]
   }
 }
 
