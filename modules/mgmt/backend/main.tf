@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "mgmt" {
-  bucket_name = var.bucket_name
+  name = var.bucket_name
 }
 
 resource "aws_s3_bucket_acl" "mgmt_bucket_acl" {
