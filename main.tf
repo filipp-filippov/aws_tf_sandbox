@@ -27,7 +27,7 @@ module "mgmt-backend" {
   table_name = "mgmt-terraform-lock"
 }
 
-module "mgmt-backend" {
+module "dev-backend" {
   source  = "./modules/backends"
   bucket_name = "dev-tfstate"
   aws_ou = "dev"
