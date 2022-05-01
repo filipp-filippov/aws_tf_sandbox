@@ -2,7 +2,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
   config  = {
     bucket  = "mgmt-tfstate"
-    key = "ou-mgmt"
+    key = "ou/mgmt"
     region  = "eu-central-1"
   }
 }
