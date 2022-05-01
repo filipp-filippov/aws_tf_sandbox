@@ -20,18 +20,18 @@ provider "aws" {
   profile = "default"
 }
 
-module "root-backend" {
-  source  = "./modules/backends"
-  bucket_name = "root-tfstate"
-  aws_ou = "root"
-  table_name = "root-terraform-lock"
-}
-
 module "mgmt-backend" {
   source  = "./modules/backends"
   bucket_name = "mgmt-tfstate"
   aws_ou = "mgmt"
   table_name = "mgmt-terraform-lock"
+}
+
+module "mgmt-backend" {
+  source  = "./modules/backends"
+  bucket_name = "dev-tfstate"
+  aws_ou = "dev"
+  table_name = "dev-terraform-lock"
 }
 
 module "mgmt-tf-role" {
