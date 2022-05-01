@@ -36,10 +36,9 @@ module "vpc" {
   }
 }
 
-/*
 module "eks" {
   source  = "./eks"
   providers = {
     aws = aws.mgmt
   }
-}*/
+}
