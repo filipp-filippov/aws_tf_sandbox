@@ -29,4 +29,7 @@ provider "aws" {
 
 module "vpc" {
   source  = "./vpc"
+  providers = {
+    aws = aws.mgmt
+  }
 }
