@@ -1,4 +1,12 @@
 terraform {
+  backend = "s3"
+  config  = {
+    bucket = "root-tfstate"
+    key = "tfstate-root"
+    region = "eu-central-1"
+    dynamodb_table = "root-terraform-lock"
+    encrypt        = true
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -13,19 +21,15 @@ provider "aws" {
   profile = "default"
 }
 
-/*provider "aws" {
-
-  assume_role {
-    role_arn = local.aws_organization_master_account_id.role_arn
-  }
-
-  alias  = "mgmt"
-  region = "eu-central-1"
-  profile = "default"
-}*/
+module "root-backend" {
+  source  = "./modules/backends"
+  bucket_name = "root-tfstate"
+  aws_ou = "root"
+  table_name = "root-terraform-lock"
+}
 
 module "mgmt-backend" {
-  source  = "./modules/mgmt/backend"
+  source  = "./modules/backends"
   bucket_name = "mgmt-tfstate"
   aws_ou = "mgmt"
   table_name = "mgmt-terraform-lock"
@@ -34,6 +38,9 @@ module "mgmt-backend" {
 module "mgmt-tf-role" {
   source = "./modules/mgmt/iam"
   iam_role_env = "mgmt"
+  providers = {
+    aws = aws.mgmt
+  }
 }
 
 /*

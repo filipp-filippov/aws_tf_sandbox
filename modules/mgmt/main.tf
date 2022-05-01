@@ -3,6 +3,8 @@ terraform {
     bucket = "mgmt-tfstate"
     key = "ou/mgmt"
     region = "eu-central-1"
+    dynamodb_table = "mgmt-terraform-lock"
+    encrypt        = true
   }
   required_providers {
     aws = {
@@ -33,3 +35,11 @@ module "vpc" {
     aws = aws.mgmt
   }
 }
+
+/*
+module "eks" {
+  source  = "./eks"
+  providers = {
+    aws = aws.mgmt
+  }
+}*/
