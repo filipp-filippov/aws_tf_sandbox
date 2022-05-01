@@ -3,6 +3,7 @@ data "terraform_remote_state" "remote" {
   config  = {
     bucket  = "mgmt-tfstate"
     key = "ou/mgmt"
+    region  = "eu-central-1"
   }
 }
 
@@ -11,6 +12,7 @@ data "terraform_remote_state" "remote-root" {
   config  = {
     bucket  = "root-tfstate-1"
     key = "tfstate-root"
+    region  = "eu-central-1"
   }
 }
 
