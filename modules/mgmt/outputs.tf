@@ -12,10 +12,6 @@ data "aws_iam_session_context" "current" {
 #  ]
 #}
 
-output "account_ids" {
-  value = data.aws_organizations_organization.current.accounts[*].id
-}
-
 output "account_id" {
   value = data.aws_caller_identity.current.account_id
 }
