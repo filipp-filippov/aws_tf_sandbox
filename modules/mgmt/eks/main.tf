@@ -1,10 +1,10 @@
-data "terraform_remote_state" "remote" {
+/*data "terraform_remote_state" "remote" {
   backend = "s3"
   config  = {
     bucket  = "mgmt-tfstate"
     key = "ou/mgmt"
   }
-}
+}*/
 
 resource "aws_eks_cluster" "dev-eks" {
   name     = "dev-eks"
