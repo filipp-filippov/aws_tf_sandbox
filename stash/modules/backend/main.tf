@@ -1,13 +1,16 @@
 resource "aws_s3_bucket" "tfstate" {
   bucket = var.bucket_name
+}
+
+resource "aws_s3_bucket_acl" "tfstate_bucket_acl" {
+  bucket = aws_s3_bucket.tfstate.id
   acl    = "private"
+}
 
-  versioning {
-    enabled = true
-  }
-
-  lifecycle {
-    prevent_destroy = true
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.tfstate.id
+  versioning_configuration {
+    status = "Enabled"
   }
 }
 
