@@ -23,5 +23,4 @@ provider "aws" {
 
 module "vpc" {
   source  = "./vpc"
-  version = "3.14.0"
 }
