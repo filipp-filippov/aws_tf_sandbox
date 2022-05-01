@@ -2,6 +2,10 @@ data "aws_organizations_organization" "current" {}
 
 data "aws_caller_identity" "current" {}
 
+data "aws_iam_session_context" "current" {
+  arn = data.aws_caller_identity.current.arn
+}
+
 #output "users_summary" {
 #  value = [
 #    module.john_doe.summary
@@ -23,6 +27,21 @@ output "caller_arn" {
 output "caller_user" {
   value = data.aws_caller_identity.current.user_id
 }
+
+output "session_arn" {
+  value = data.aws_iam_session_context.current.arn
+}
+
+output "provider" {
+  value = data.aws_iam_session_context.current.provider
+}
+
+output "issuer_arn" {
+  value = data.aws_iam_session_context.current.issuer_arn
+}
+
+
+
 /*output "links" {
   value = {
     aws_console_sign_in    = "https://${aws_organizations_account.users.id}.signin.aws.amazon.com/console/"
