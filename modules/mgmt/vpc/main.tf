@@ -1,5 +1,5 @@
 resource "aws_default_vpc" "mgmt-default" {
-  force_destory = false
+  force_destroy = false
   tags = {
     Name = "Default MGMT VPC"
   }
