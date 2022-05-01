@@ -31,7 +31,7 @@ output "vpc_compute_network_cidr" {
 }
 
 output "vpc_session_arn" {
-  value = ""
+  value = module.vpc.session_arn
 }
 
 /*output "links" {
