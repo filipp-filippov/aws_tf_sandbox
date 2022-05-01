@@ -1,17 +1,17 @@
-data "terraform_remote_state" "remote" {
-  backend "s3" {
+data "terraform_remote_state" "common" {
+  backend = "s3"
+  config  = {
     bucket  = "mgmt-tfstate"
     key = "ou/mgmt"
-    region  = "eu-central-1"
   }
 }
 
 resource "aws_eks_cluster" "dev-eks" {
   name     = "dev-eks"
-  role_arn = data.terraform_remote_state.remote.aws_subnet.mgmt-compute.id
+  role_arn = data.terraform_remote_state.common.aws_subnet.mgmt-compute.id
 
   vpc_config {
-    subnet_ids = [data.terraform_remote_state.remote.aws_subnet.mgmt-compute.id]
+    subnet_ids = [data.terraform_remote_state.common.aws_subnet.mgmt-compute.id]
   }
 }
 
