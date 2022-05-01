@@ -32,8 +32,8 @@ output "session_arn" {
   value = data.aws_iam_session_context.current.arn
 }
 
-output "provider" {
-  value = data.aws_iam_session_context.current.provider
+output "issuer_name" {
+  value = data.aws_iam_session_context.current.issuer_name
 }
 
 output "issuer_arn" {
