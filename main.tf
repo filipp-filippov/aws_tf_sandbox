@@ -13,8 +13,7 @@ provider "aws" {
   profile = "default"
 }
 
-
-provider "aws" {
+/*provider "aws" {
 
   assume_role {
     role_arn = local.aws_organization_master_account_id.role_arn
@@ -23,16 +22,13 @@ provider "aws" {
   alias  = "mgmt"
   region = "eu-central-1"
   profile = "default"
-}
+}*/
 
 module "mgmt-backend" {
   source  = "./modules/mgmt/backend"
   bucket_name = "tfstate"
   aws_ou = "mgmt"
   table_name = "mgmt-terraform-lock"
-  providers = {
-    aws = aws
-  }
 }
 
 module "mgmt-tf-role" {
