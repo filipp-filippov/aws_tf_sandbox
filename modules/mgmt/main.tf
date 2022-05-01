@@ -1,6 +1,8 @@
 terraform {
   backend "s3" {
     bucket = "mgmt-tfstate"
+    key = "ou/mgmt"
+    region = "eu-central-1"
   }
   required_providers {
     aws = {
