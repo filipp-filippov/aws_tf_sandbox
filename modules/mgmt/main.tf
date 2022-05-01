@@ -20,7 +20,7 @@ provider "aws" {
 
 provider "aws" {
   assume_role {
-    role_arn = "arn:aws:iam::${local.account_id.mgmt}:role/TerrafromMGMTRole"
+    role_arn = "arn:aws:iam::${local.account_id.mgmt}:role/TerraformMGMTRole"
   }
   alias  = "mgmt"
   region = "eu-central-1"
