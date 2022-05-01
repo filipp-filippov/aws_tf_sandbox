@@ -26,15 +26,6 @@ output "session_arn" {
   value = data.aws_iam_session_context.current.arn
 }
 
-output "issuer_name" {
-  value = data.aws_iam_session_context.current.issuer_name
-}
-
-output "issuer_arn" {
-  value = data.aws_iam_session_context.current.issuer_arn
-}
-
-
 
 /*output "links" {
   value = {
