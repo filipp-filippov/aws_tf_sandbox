@@ -37,9 +37,6 @@ module "dev-backend" {
 module "mgmt-tf-role" {
   source = "./modules/mgmt/iam"
   iam_role_env = "mgmt"
-  providers = {
-    aws = aws.mgmt
-  }
 }
 
 /*
