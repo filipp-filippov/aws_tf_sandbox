@@ -6,9 +6,17 @@ data "terraform_remote_state" "remote" {
   }
 }
 
+data "terraform_remote_state" "remote-root" {
+  backend = "s3"
+  config  = {
+    bucket  = "root-tfstate-1"
+    key = "tfstate-root"
+  }
+}
+
 resource "aws_eks_cluster" "dev-eks" {
   name     = "dev-eks"
-  role_arn = data.terraform_remote_state.remote.aws_subnet.mgmt-compute.id
+  role_arn = data.terraform_remote_state.remote-root.iam.mgmt-tf-role.name
 
   vpc_config {
     subnet_ids = [data.terraform_remote_state.remote.aws_subnet.mgmt-compute.id]
@@ -19,10 +27,8 @@ output "endpoint" {
   value = aws_eks_cluster.dev-eks.endpoint
 }
 
-/*
-output "kubeconfig-certificate-authority-data" {
-  value = aws_eks_cluster.example.certificate_authority[0].data
-}
 
-*/
+output "kubeconfig-certificate-authority-data" {
+  value = aws_eks_cluster.dev-eks.certificate_authority[0].data
+}
 
