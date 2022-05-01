@@ -1,4 +1,7 @@
 terraform {
+  backend "s3" {
+    bucket = "mgmt-tfstate"
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"

@@ -26,7 +26,7 @@ provider "aws" {
 
 module "mgmt-backend" {
   source  = "./modules/mgmt/backend"
-  bucket_name = "tfstate"
+  bucket_name = "mgmt-tfstate"
   aws_ou = "mgmt"
   table_name = "mgmt-terraform-lock"
 }
