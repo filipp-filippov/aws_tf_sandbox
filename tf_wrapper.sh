@@ -9,7 +9,7 @@ showusage(){
   echo -e "Exactly four arguments required:\n
   1. OU e.g. dev_ou, prod_ou, etc...\n
   2. ACCOUNT_NAME e.g. dev1_acct, dev2_acct, etc...\n
-  3. LAYER e.g. networking, compute, db, etc...
+  3. LAYER e.g. networking, compute, db, etc...\n
   4. ACTION e.g. plan, apply, destroy\n"
 }
 
