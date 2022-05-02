@@ -23,7 +23,7 @@ elif [ "$(find ./environments -type d -name "${OU}" | grep -q \.; echo $?)" != "
   then
     echo "Specified OU not found"
     showusage
-    kill -9 $$
+    kill -9 $$ > /dev/null 2>&1
 fi
 
 if [ "${ACCOUNT_NAME}" == "" ]
@@ -35,7 +35,7 @@ elif [ "$(find ./environments/${OU} -type d -name "${ACCOUNT_NAME}" | grep -q \.
   then
     echo "Specified ACCOUNT_NAME not found"
     showusage
-    kill -9 $$
+    kill -9 $$ > /dev/null 2>&1
 fi
 
 if [ "${LAYER}" == "" ]
@@ -47,7 +47,7 @@ elif [ "$(find ./environments/${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | g
   then
     echo "Specified LAYER not found"
     showusage
-    kill -9 $$
+    kill -9 $$ > /dev/null 2>&1
 fi
 
 case ${ACTION} in
