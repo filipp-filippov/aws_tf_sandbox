@@ -34,7 +34,7 @@ module "mgmt-backend" {
   table_name = "dev-terraform-lock"
 }*/
 
-module "mgmt-tf-role" {
+module "tf-iam" {
   source = "./modules/iam"
   iam_role_env = "mgmt"
 }
