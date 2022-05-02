@@ -18,7 +18,7 @@ then
   echo "You should specify OU parameter"
   showusage
   kill -9 $$
-elif [ "$(find . -type d -name "${OU}" | grep -q .)" ];
+elif [ "$(find ./environments -type d -name "${OU}" | grep -q .)" ];
   then
     echo "Specified OU not found"
     showusage
@@ -30,7 +30,7 @@ then
   echo "You should specify ACCOUNT_NAME parameter"
   showusage
   kill -9 $$
-elif [ "$(find ./${OU} -type d -name "${ACCOUNT_NAME}" | grep -q .)" ];
+elif [ "$(find ./environments/${OU} -type d -name "${ACCOUNT_NAME}" | grep -q .)" ];
   then
     echo "Specified ACCOUNT_NAME not found"
     showusage
@@ -42,7 +42,7 @@ then
   echo "You should specify LAYER parameter"
   showusage
   kill -9 $$
-elif [ "$(find ./${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | grep -q .)" ];
+elif [ "$(find ./environments/${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | grep -q .)" ];
   then
     echo "Specified LAYER not found"
     showusage
@@ -50,16 +50,16 @@ elif [ "$(find ./${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | grep -q .)" ];
 fi
 
 case ${ACTION} in
-    plan) terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
-          terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
-          terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" plan
+    plan) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" plan
           ;;
-   apply) terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
-          terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
-          terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" apply
+   apply) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" apply
           ;;
- destroy) terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
-          terraform -chdir="${OU}/${ACCOUNT_NAME}/${LAYER}" destroy
+ destroy) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" destroy
           ;;
        *) echo "You should specify ACTION parameter"
           showusage
