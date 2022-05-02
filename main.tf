@@ -21,7 +21,7 @@ provider "aws" {
 }
 
 module "mgmt-backend" {
-  source  = "./modules/backends"
+  source  = "modules/global/backends"
   bucket_name = "mgmt-tfstate"
   aws_ou = "mgmt"
   table_name = "mgmt-terraform-lock"
@@ -35,7 +35,7 @@ module "mgmt-backend" {
 }*/
 
 module "mgmt-tf-role" {
-  source = "./modules/mgmt/iam"
+  source = "modules/global/iam"
   iam_role_env = "mgmt"
 }
 
