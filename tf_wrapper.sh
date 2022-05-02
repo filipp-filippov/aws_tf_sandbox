@@ -4,7 +4,7 @@ OU="$1"
 ACCOUNT_NAME="$2"
 LAYER="$3"
 ACTION="$4"
-array EXTRA="${@: 5}"
+EXTRA="${@:5}"
 
 showusage(){
   echo -e "Exactly four arguments required:\n
