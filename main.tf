@@ -27,12 +27,12 @@ module "mgmt-backend" {
   table_name = "mgmt-terraform-lock"
 }
 
-module "dev-backend" {
+/*module "dev-backend" {
   source  = "./modules/backends"
   bucket_name = "dev-tfstate"
   aws_ou = "dev"
   table_name = "dev-terraform-lock"
-}
+}*/
 
 module "mgmt-tf-role" {
   source = "./modules/mgmt/iam"
