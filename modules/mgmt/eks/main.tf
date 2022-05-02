@@ -21,7 +21,10 @@ resource "aws_eks_cluster" "dev-eks" {
   role_arn = data.terraform_remote_state.remote-root.outputs.terraform_role_arn
 
   vpc_config {
-    subnet_ids = [data.terraform_remote_state.remote-mgmt.outputs.vpc_compute_network_id]
+    subnet_ids = [
+      data.terraform_remote_state.remote-mgmt.outputs.vpc_compute_network_id,
+      data.terraform_remote_state.remote-mgmt.outputs.vpc_db_network_id
+    ]
   }
 }
 

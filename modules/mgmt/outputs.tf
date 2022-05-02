@@ -34,6 +34,10 @@ output "vpc_compute_network_id" {
   value = module.vpc.mgmt_compute_network_id
 }
 
+output "vpc_db_network_id" {
+  value = module.vpc.mgmt_db_network_id
+}
+
 output "vpc_session_arn" {
   value = module.vpc.session_arn
 }

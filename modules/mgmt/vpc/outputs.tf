@@ -16,6 +16,10 @@ output "db_compute_network_cidr" {
   value = aws_subnet.mgmt-db.cidr_block
 }
 
+output "mgmt_db_network_id" {
+  value = aws_subnet.mgmt-db.id
+}
+
 output "svc_compute_network_cidr" {
   value = aws_subnet.mgmt-svc.cidr_block
 }
