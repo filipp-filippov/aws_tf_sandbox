@@ -47,13 +47,11 @@ then
   echo "You should specify LAYER parameter"
   showusage
   kill -9 $$ > /dev/null 2>&1
-  wait $$ 2> /dev/null
 elif [ "$(find ./environments/${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | grep -q \.; echo $?)" != "0" ];
   then
     echo "Specified LAYER not found"
     showusage
-    kill -9 $$ > /dev/null 2>&1
-    wait $$ 2> /dev/null
+    \{ kill -9 $$ \} > /dev/null 2>&1
 fi
 
 case ${ACTION} in
