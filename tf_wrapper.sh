@@ -19,7 +19,7 @@ then
   echo "You should specify OU parameter"
   showusage
   kill -9 $$
-elif [ ! "$(find ./environments -type d -name "${OU}" | grep -q .)" ];
+elif [ "$(find ./environments -type d -name "${OU}" | grep -q .)" != "0" ];
   then
     echo "Specified OU not found"
     showusage
@@ -31,7 +31,7 @@ then
   echo "You should specify ACCOUNT_NAME parameter"
   showusage
   kill -9 $$
-elif [ ! "$(find ./environments/${OU} -type d -name "${ACCOUNT_NAME}" | grep -q .)" ];
+elif [ "$(find ./environments/${OU} -type d -name "${ACCOUNT_NAME}" | grep -q .)" != "0" ];
   then
     echo "Specified ACCOUNT_NAME not found"
     showusage
@@ -43,7 +43,7 @@ then
   echo "You should specify LAYER parameter"
   showusage
   kill -9 $$
-elif [ ! "$(find ./environments/${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | grep -q .)" ];
+elif [ "$(find ./environments/${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | grep -q .)" != "0" ];
   then
     echo "Specified LAYER not found"
     showusage
