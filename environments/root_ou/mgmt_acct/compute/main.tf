@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "mgmt-tfstate"
-    key = "ou/mgmt"
+    key = "ou/mgmt/compute"
     region = "eu-central-1"
     dynamodb_table = "mgmt-terraform-lock"
     encrypt        = true
@@ -20,25 +20,19 @@ provider "aws" {
   profile = "default"
 }
 
+data aws_caller_identity "this" {}
+
 provider "aws" {
   assume_role {
-    role_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TerraformMGMTRole"
+    role_arn = "arn:aws:iam::${data.aws_caller_identity.this.account_id}:role/TerraformMGMTRole"
   }
   alias  = "mgmt"
   region = "eu-central-1"
   profile = "default"
 }
 
-module "vpc" {
-  source  = "./vpc"
-  providers = {
-    aws = aws.mgmt
-  }
-}
-
 module "eks" {
-  source  = "./eks"
-  depends_on = [module.vpc]
+  source  = "../../../../modules/eks"
   providers = {
     aws = aws.mgmt
   }
