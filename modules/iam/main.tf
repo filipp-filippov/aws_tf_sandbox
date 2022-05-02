@@ -31,7 +31,12 @@ resource "aws_iam_role" "mgmt-tf-role" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "attach-tf-policy" {
+resource "aws_iam_role_policy_attachment" "attach-tf-policies" {
+  policy_arn = aws_iam_policy.mgmt-tf.arn
+  role       = aws_iam_role.mgmt-tf-role.arn
+}
+
+/*resource "aws_iam_role_policy_attachment" "attach-tf-policy" {
   depends_on = [aws_iam_policy.mgmt-tf]
   for_each = try(toset([
     "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
@@ -39,5 +44,5 @@ resource "aws_iam_role_policy_attachment" "attach-tf-policy" {
   ]))
   role       = aws_iam_role.mgmt-tf-role.arn
   policy_arn = each.value
-}
+}*/
 
