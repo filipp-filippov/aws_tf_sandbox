@@ -18,36 +18,42 @@ if [ "${OU}" == "" ]
 then
   echo "You should specify OU parameter"
   showusage
-  kill -9 $$
+  kill -9 $$ > /dev/null 2>&1
+  sleep 1
 elif [ "$(find ./environments -type d -name "${OU}" | grep -q \.; echo $?)" != "0" ];
   then
     echo "Specified OU not found"
     showusage
     kill -9 $$ > /dev/null 2>&1
+    sleep 1
 fi
 
 if [ "${ACCOUNT_NAME}" == "" ]
 then
   echo "You should specify ACCOUNT_NAME parameter"
   showusage
-  kill -9 $$
+  kill -9 $$ > /dev/null 2>&1
+  sleep 1
 elif [ "$(find ./environments/${OU} -type d -name "${ACCOUNT_NAME}" | grep -q \.; echo $?)" != "0" ];
   then
     echo "Specified ACCOUNT_NAME not found"
     showusage
     kill -9 $$ > /dev/null 2>&1
+    sleep 1
 fi
 
 if [ "${LAYER}" == "" ]
 then
   echo "You should specify LAYER parameter"
   showusage
-  kill -9 $$
+  kill -9 $$ > /dev/null 2>&1
+  sleep 1
 elif [ "$(find ./environments/${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | grep -q \.; echo $?)" != "0" ];
   then
     echo "Specified LAYER not found"
     showusage
     kill -9 $$ > /dev/null 2>&1
+    sleep 1
 fi
 
 case ${ACTION} in
@@ -65,5 +71,6 @@ case ${ACTION} in
        *) echo "You should specify ACTION parameter"
           showusage
           kill -9 $$
+          sleep 1
           ;;
 esac
