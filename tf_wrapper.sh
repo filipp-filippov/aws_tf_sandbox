@@ -6,7 +6,7 @@ LAYER="$3"
 ACTION="$4"
 EXTRA="${@:5}"
 
-showusage(){
+showusage() {
   echo -e "Exactly four arguments required:\n
   1. OU e.g. dev_ou, prod_ou, etc...\n
   2. ACCOUNT_NAME e.g. dev1_acct, dev2_acct, etc...\n

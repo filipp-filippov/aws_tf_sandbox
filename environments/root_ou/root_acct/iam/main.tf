@@ -25,5 +25,5 @@ provider "aws" {
 module "tf-iam" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "mgmt"
-  org_account_id  = ""
+  org_account_id  = var.org_account_id
 }
