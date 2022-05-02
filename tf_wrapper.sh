@@ -4,6 +4,7 @@ OU="$1"
 ACCOUNT_NAME="$2"
 LAYER="$3"
 ACTION="$4"
+EXTRA="$5 $6 $7 $8 $9"
 
 showusage(){
   echo -e "Exactly four arguments required:\n
@@ -52,14 +53,14 @@ fi
 case ${ACTION} in
     plan) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
           terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
-          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" plan
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" plan "${EXTRA}"
           ;;
    apply) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
           terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
-          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" apply
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" apply "${EXTRA}"
           ;;
  destroy) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
-          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" destroy
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" destroy "${EXTRA}"
           ;;
        *) echo "You should specify ACTION parameter"
           showusage
