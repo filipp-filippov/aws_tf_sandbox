@@ -26,6 +26,7 @@
                 "logs:*",
                 "events:*",
                 "elasticache:*",
+                "eks:*",
                 "es:*",
                 "kms:*",
                 "dynamodb:*"
