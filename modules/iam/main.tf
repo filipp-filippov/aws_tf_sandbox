@@ -37,7 +37,7 @@ resource "aws_iam_role_policy_attachment" "attach-tf-policies" {
 }
 
 resource "aws_iam_role_policy_attachment" "attach-eks-policy" {
-  role       = aws_iam_role.mgmt-tf-role.arn
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  role       = aws_iam_role.mgmt-tf-role.arn
 }
 
