@@ -36,10 +36,10 @@ module "vpc" {
   }
 }
 
-module "eks" {
+/*module "eks" {
   source  = "./eks"
   depends_on = [module.vpc]
   providers = {
     aws = aws.mgmt
   }
-}
+}*/
