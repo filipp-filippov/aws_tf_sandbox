@@ -53,14 +53,14 @@ fi
 case ${ACTION} in
     plan) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
           terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
-          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" plan "${EXTRA}"
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" plan $(echo "${EXTRA}")
           ;;
    apply) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
           terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" validate &&
-          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" apply "${EXTRA}"
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" apply $(echo "${EXTRA}")
           ;;
  destroy) terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" init -reconfigure &&
-          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" destroy "${EXTRA}"
+          terraform -chdir="./environments/${OU}/${ACCOUNT_NAME}/${LAYER}" destroy $(echo "${EXTRA}")
           ;;
        *) echo "You should specify ACTION parameter"
           showusage
