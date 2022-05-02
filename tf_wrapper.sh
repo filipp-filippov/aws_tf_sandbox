@@ -5,6 +5,7 @@ ACCOUNT_NAME="$2"
 LAYER="$3"
 ACTION="$4"
 EXTRA="${@:5}"
+PID="$$"
 
 showusage() {
   echo -e "Exactly four arguments required:\n
@@ -51,7 +52,7 @@ elif [ "$(find ./environments/${OU}/${ACCOUNT_NAME} -type d -name "${LAYER}" | g
   then
     echo "Specified LAYER not found"
     showusage
-    \{ kill -9 $$ \} > /dev/null 2>&1
+    \{ kill -9 ${PID} \} > /dev/null 2>&1
 fi
 
 case ${ACTION} in
