@@ -8,10 +8,10 @@ data "template_file" "tf_permissions" {
 
 data "template_file" "tf_assume_role" {
   template = file("${path.module}/assume_role.tpl")
-/*  #FIXME That should be manual input
+  #FIXME That should be manual input
   vars  = {
-    org_account_id  = data.aws_caller_identity.current.account_id
-  }*/
+    org_account_id  = var.org_account_id
+  }
 }
 
 resource "aws_organizations_organizational_unit" "mgmt" {
