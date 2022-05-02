@@ -30,6 +30,10 @@ output "vpc_compute_network_cidr" {
   value = module.vpc.db_compute_network_cidr
 }
 
+output "vpc_compute_network_id" {
+  value = module.vpc.mgmt_compute_network_id
+}
+
 output "vpc_session_arn" {
   value = module.vpc.session_arn
 }
