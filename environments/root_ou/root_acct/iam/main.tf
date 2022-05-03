@@ -42,16 +42,28 @@ module "infosec_org_unit" {
 #Put Environments backends here
 #Big thing it's to use outputs with account IDS while accounts creation
 
-module "tf-iam-mgmt" {
-  source = "../../../../modules/iam_terraform_role/role"
-  iam_role_env = "mgmt"
-  org_account_id  = data.aws_organizations_organization.current.accounts[1].id
-  mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
-}
-
-module "tf-iam-dev" {
+module "tf-iam-policy" {
   source = "../../../../modules/iam_terraform_role/policy"
   iam_role_env = "dev"
   org_account_id = data.aws_organizations_organization.current.accounts[0].id
   mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
 }
+
+module "tf-iam-mgmt" {
+  source = "../../../../modules/iam_terraform_role/role"
+  depends_on = [module.tf-iam-policy]
+  iam_role_env = "mgmt"
+  iam_policy_arn  = module.tf-iam-policy.tf_iam_policy_arn
+  org_account_id  = data.aws_organizations_organization.current.accounts[1].id
+  mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
+}
+
+module "tf-iam-mgmt" {
+  source = "../../../../modules/iam_terraform_role/role"
+  depends_on = [module.tf-iam-policy]
+  iam_role_env = "mgmt"
+  iam_policy_arn  = module.tf-iam-policy.tf_iam_policy_arn
+  org_account_id  = data.aws_organizations_organization.current.accounts[1].id
+  mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
+}
+

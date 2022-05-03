@@ -16,3 +16,13 @@ resource "aws_iam_role" "mgmt-tf-role" {
     env = var.iam_role_env
   }
 }
+
+resource "aws_iam_role_policy_attachment" "attach-tf-policies" {
+  policy_arn = var.iam_policy_arn
+  role       = "${var.mgmt_tf_role_name}-${var.org_account_id}"
+}
+
+resource "aws_iam_role_policy_attachment" "attach-eks-policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  role       = "${var.mgmt_tf_role_name}-${var.org_account_id}"
+}
