@@ -7,6 +7,10 @@ data "template_file" "tf_permissions" {
 }
 
 data "template_file" "tf_assume_role" {
+  ignore_changes = [
+    name,
+    policy
+  ]
   template = file("${path.module}/assume_role.tpl")
   #FIXME That should be manual input
   vars  = {
