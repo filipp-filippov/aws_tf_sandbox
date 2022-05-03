@@ -3,7 +3,7 @@ data "aws_caller_identity" "current" {}
 data "aws_organizations_organization" "current" {}
 
 data "template_file" "tf_permissions" {
-  template = file("${path.module}/terraform_role.json")
+  template = file("${path.module}/terraform_policyK.json")
 }
 
 data "template_file" "tf_assume_role" {
