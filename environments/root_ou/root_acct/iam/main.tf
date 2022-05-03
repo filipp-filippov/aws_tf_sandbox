@@ -43,14 +43,14 @@ module "infosec_org_unit" {
 #Big thing it's to use outputs with account IDS while accounts creation
 
 module "tf-iam-mgmt" {
-  source = "../../../../modules/iam_terraform_role"
+  source = "../../../../modules/iam_terraform_role/role"
   iam_role_env = "mgmt"
   org_account_id  = data.aws_organizations_organization.current.accounts[1].id
   mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
 }
 
 module "tf-iam-dev" {
-  source = "../../../../modules/iam_terraform_role"
+  source = "../../../../modules/iam_terraform_role/policy"
   iam_role_env = "dev"
   org_account_id = data.aws_organizations_organization.current.accounts[0].id
   mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
