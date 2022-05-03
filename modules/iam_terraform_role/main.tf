@@ -22,6 +22,12 @@ resource "aws_organizations_organizational_unit" "mgmt" {
 resource "aws_iam_policy" "mgmt-tf" {
   name = var.tf_policy_name
   policy = data.template_file.tf_permissions.rendered
+  lifecycle {
+    ignore_changes = [
+      "name",
+      "policy"
+    ]
+  }
 }
 
 resource "aws_iam_role" "mgmt-tf-role" {
