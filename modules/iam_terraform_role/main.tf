@@ -19,8 +19,8 @@ resource "aws_iam_policy" "mgmt-tf" {
   policy = data.template_file.tf_permissions.rendered
   lifecycle {
     ignore_changes = [
-      "name",
-      "policy"
+      name,
+      policy
     ]
   }
 }
