@@ -4,16 +4,13 @@ data "aws_organizations_organization" "current" {}
 
 data "template_file" "tf_permissions" {
   template = file("${path.module}/terraform_role.json")
-  vars  = {
-    mgmt_account_id  = var.mgmt_account_id
-  }
 }
 
 data "template_file" "tf_assume_role" {
   template = file("${path.module}/assume_role.tpl")
   #FIXME That should be manual input
   vars  = {
-    org_account_id  = var.org_account_id
+    mgmt_account_id  = var.mgmt_account_id
   }
 }
 
