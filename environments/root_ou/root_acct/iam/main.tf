@@ -27,11 +27,11 @@ provider "aws" {
 module "tf-iam-mgmt" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "mgmt"
-  org_account_id  = data.aws_organizations_organization.current.accounts["mgmt"].id
+  org_account_id  = data.aws_organizations_organization.current.accounts[0].id
 }
 
 module "tf-iam-dev" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "dev"
-  org_account_id = data.aws_organizations_organization.current.accounts["development"].id
+  org_account_id = data.aws_organizations_organization.current.accounts[1].id
 }
