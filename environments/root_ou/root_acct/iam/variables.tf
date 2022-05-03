@@ -1,7 +1,3 @@
-variable "org_account_id_mgmt" {
-  type  = string
-}
-
-variable "org_account_id_dev" {
+variable "org_account_id" {
   type  = string
 }
