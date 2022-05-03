@@ -47,7 +47,7 @@ module "tf-iam-policy" {
   iam_role_env = "dev"
 }
 
-module "tf-iam-mgmt" {
+module "tf-iam-role-mgmt" {
   source = "../../../../modules/iam_terraform_role/role"
   depends_on = [module.tf-iam-policy]
   iam_role_env = "mgmt"
@@ -56,7 +56,7 @@ module "tf-iam-mgmt" {
   mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
 }
 
-module "tf-iam-mgmt" {
+module "tf-iam-role-dev" {
   source = "../../../../modules/iam_terraform_role/role"
   depends_on = [module.tf-iam-policy]
   iam_role_env = "dev"
