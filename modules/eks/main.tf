@@ -16,7 +16,7 @@ data "terraform_remote_state" "remote-root" {
   }
 }
 
-resource "aws_eks_cluster" "dev-eks" {
+resource "aws_eks_cluster" "this-eks" {
   name     = "dev-eks"
   role_arn = data.terraform_remote_state.remote-root.outputs.terraform_role_arn
 
@@ -28,12 +28,4 @@ resource "aws_eks_cluster" "dev-eks" {
   }
 }
 
-output "endpoint" {
-  value = aws_eks_cluster.dev-eks.endpoint
-}
-
-
-output "kubeconfig-certificate-authority-data" {
-  value = aws_eks_cluster.dev-eks.certificate_authority[0].data
-}
 

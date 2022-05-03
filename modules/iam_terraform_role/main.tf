@@ -25,7 +25,7 @@ resource "aws_iam_policy" "mgmt-tf" {
 }
 
 resource "aws_iam_role" "mgmt-tf-role" {
-  name = "TerraformMGMTRole"
+  name = "${var.mgmt_tf_role_name}-${var.org_account_id}"
   assume_role_policy = data.template_file.tf_assume_role.rendered
   tags = {
     env = var.iam_role_env
