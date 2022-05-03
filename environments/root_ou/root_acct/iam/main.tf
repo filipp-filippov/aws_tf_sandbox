@@ -14,6 +14,8 @@ terraform {
   }
 }
 
+data aws_organizations_organization "current" {}
+
 provider "aws" {
   region = "eu-central-1"
   shared_credentials_files = ["/root/.aws/credentials"]
@@ -25,11 +27,11 @@ provider "aws" {
 module "tf-iam-mgmt" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "mgmt"
-  org_account_id  = var.org_account_id_mgmt
+  org_account_id  = data.aws_organizations_organization.current.accounts['mgmt'].id
 }
 
 module "tf-iam-dev" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "dev"
-  org_account_id = var.org_account_id_dev
+  org_account_id = data.aws_organizations_organization.current.accounts['development'].id
 }
