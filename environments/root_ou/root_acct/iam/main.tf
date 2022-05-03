@@ -22,8 +22,14 @@ provider "aws" {
 
 #Put Environments backends here
 
-module "tf-iam" {
+module "tf-iam-mgmt" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "mgmt"
-  org_account_id  = var.org_account_id
+  org_account_id  = var.org_account_id_mgmt
+}
+
+module "tf-iam-dev" {
+  source = "../../../../modules/iam_terraform_role"
+  iam_role_env = "dev"
+  org_account_id = var.org_account_id_dev
 }
