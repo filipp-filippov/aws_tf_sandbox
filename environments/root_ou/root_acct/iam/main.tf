@@ -26,17 +26,17 @@ provider "aws" {
 
 module "mgmt_org_unit" {
   source = "../../../../modules/organization_units"
-  ou_name = "mgmt"
+  ou_name = "mgmt_ou"
 }
 
 module "dev_org_unit" {
   source = "../../../../modules/organization_units"
-  ou_name = "development"
+  ou_name = "development_ou"
 }
 
 module "infosec_org_unit" {
   source = "../../../../modules/organization_units"
-  ou_name = "infosec"
+  ou_name = "infosec_ou"
 }
 
 #Put Environments backends here
@@ -45,13 +45,13 @@ module "infosec_org_unit" {
 module "tf-iam-mgmt" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "mgmt"
-  org_account_id  = data.aws_organizations_organization.current.accounts[0].id
-  mgmt_account_id = data.aws_organizations_organization.current.accounts[0].id
+  org_account_id  = data.aws_organizations_organization.current.accounts[1].id
+  mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
 }
 
 module "tf-iam-dev" {
   source = "../../../../modules/iam_terraform_role"
   iam_role_env = "dev"
-  org_account_id = data.aws_organizations_organization.current.accounts[1].id
-  mgmt_account_id = data.aws_organizations_organization.current.accounts[0].id
+  org_account_id = data.aws_organizations_organization.current.accounts[0].id
+  mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
 }
