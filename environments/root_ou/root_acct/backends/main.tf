@@ -24,14 +24,14 @@ provider "aws" {
 
 module "mgmt-backend" {
   source  = "../../../../modules/backends"
-  bucket_name = "mgmt-tfstate"
+  bucket_prefix = "mgmt-tfstate"
   aws_ou = "mgmt"
   table_name = "mgmt-terraform-lock"
 }
 
 module "dev-backend" {
   source  = "../../../../modules/backends"
-  bucket_name = "dev-tfstate"
+  bucket_prefix = "dev-tfstate"
   aws_ou = "dev"
   table_name = "dev-terraform-lock"
 }
