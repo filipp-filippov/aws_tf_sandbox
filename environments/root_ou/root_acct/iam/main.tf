@@ -14,6 +14,7 @@ terraform {
   }
 }
 
+data aws_caller_identity "this" {}
 data aws_organizations_organization "current" {}
 
 provider "aws" {
@@ -34,11 +35,6 @@ module "dev_org_unit" {
   ou_name = "development_ou"
 }
 
-module "infosec_org_unit" {
-  source = "../../../../modules/organization_units"
-  ou_name = "infosec_ou"
-}
-
 #Put Environments backends here
 #Big thing it's to use outputs with account IDS while accounts creation
 
@@ -53,15 +49,6 @@ module "tf-iam-role-mgmt" {
   iam_role_env = "mgmt"
   iam_policy_arn  = module.tf-iam-policy.tf_iam_policy_arn
   org_account_id  = data.aws_organizations_organization.current.accounts[1].id
-  mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
-}
-
-module "tf-iam-role-dev" {
-  source = "../../../../modules/iam_terraform_role/role"
-  depends_on = [module.tf-iam-policy]
-  iam_role_env = "dev"
-  iam_policy_arn  = module.tf-iam-policy.tf_iam_policy_arn
-  org_account_id = data.aws_organizations_organization.current.accounts[0].id
   mgmt_account_id = data.aws_organizations_organization.current.accounts[1].id
 }
 

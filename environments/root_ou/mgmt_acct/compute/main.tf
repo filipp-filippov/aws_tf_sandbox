@@ -21,10 +21,11 @@ provider "aws" {
 }
 
 data aws_caller_identity "this" {}
+data aws_organizations_organization "current" {}
 
 provider "aws" {
   assume_role {
-    role_arn = "arn:aws:iam::${data.aws_caller_identity.this.account_id}:role/TerraformMGMTRole"
+    role_arn = "arn:aws:iam::${data.aws_caller_identity.this.account_id}:role/TerraformMGMTRole-${data.aws_organizations_organization.current.accounts[1].id}"
   }
   alias  = "mgmt"
   region = "eu-central-1"
