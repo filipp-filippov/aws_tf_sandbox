@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket = "mgmt-tfstate"
-    key = "ou/mgmt/networking"
+    bucket = data.terraform_remote_state.remote-root.outputs.mgmt-backend-bucket-name
+    key = "tfstate-root/backends"
     region = "eu-central-1"
-    dynamodb_table = "mgmt-terraform-lock"
+    dynamodb_table = "root-terraform-lock"
     encrypt        = true
   }
   required_providers {
@@ -20,6 +20,14 @@ provider "aws" {
   profile = "default"
 }
 
+data "terraform_remote_state" "remote-root" {
+  backend = "s3"
+  config  = {
+    bucket  = "root-tfstate-1"
+    key = "tfstate-root"
+    region  = "eu-central-1"
+  }
+}
 data aws_caller_identity "this" {}
 data aws_organizations_organization "current" {}
 
