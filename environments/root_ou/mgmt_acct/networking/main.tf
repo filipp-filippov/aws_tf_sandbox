@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     bucket = data.terraform_remote_state.remote-root.outputs.mgmt-backend-bucket-name
-    key = "tfstate-root/backends"
+    key = "tfstate-mgmt/vpc"
     region = "eu-central-1"
-    dynamodb_table = "root-terraform-lock"
+    dynamodb_table = "mgmt-terraform-lock"
     encrypt        = true
   }
   required_providers {
